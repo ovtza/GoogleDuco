@@ -11,6 +11,7 @@ public class GoogleSearchpage extends AbstractPage {
     final By nextPageButton = By.cssSelector("a[id='pnnext'] span[class='SJajHc NVbCr']");
     final By resultStats = By.cssSelector("div[class='LHJvCe'] div");
     final By firstSuggestion = By.xpath("//div[@class='mkHrUc']//li[1]");
+    final By firstResult = By.xpath("(//cite[@role='text'])[1]");
 
     //Duco chars
     final By dChar = By.xpath("//span[normalize-space()='d']");
@@ -54,5 +55,16 @@ public class GoogleSearchpage extends AbstractPage {
         driver.findElement(uChar).click();
         driver.findElement(cChar).click();
         driver.findElement(oChar).click();
+    }
+
+    public String getFirstResultUrl(){
+        String firstResultUrl = driver.findElement(firstResult).getText();
+        log.info("First result url: " + firstResultUrl);
+        return firstResultUrl+"/";
+    }
+
+    public void clickOnFirstSearchResult(){
+        log.info("Clicking first result from search engine");
+        driver.findElement(firstResult).click();
     }
 }

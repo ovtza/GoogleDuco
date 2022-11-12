@@ -63,4 +63,12 @@ public class SearchpageTests {
 
         Assert.assertTrue(googleSearchpage.getTitle().startsWith("duco"));
     }
+
+    @Test
+    public void firstResultFromSearchEngineIsPossibleToOpen() {
+        String targetUrl = googleSearchpage.getFirstResultUrl();
+        googleSearchpage.clickOnFirstSearchResult();
+
+        Assert.assertEquals(googleSearchpage.getUrl(), targetUrl);
+    }
 }

@@ -2,36 +2,48 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.time.Duration;
 
 public class GoogleHomepage extends AbstractPage {
 
-    private WebDriver driver;
-    @FindBy(name = "q")
-    WebElement searchInputElement;
+    WebDriver driver;
 
-    private final By searchButton = By.xpath("(//input[@name='btnK'])[2]");
-    private final By acceptTermsButton = By.cssSelector("button[id='L2AGLb'] div[role='none']");
-    private final By searchInput = By.name("q");
+    final By searchButton = By.xpath("(//input[@name='btnK'])[2]");
+    final By settingsButton = By.xpath("//div[@class='ayzqOc pHiOh']");
+    final By switchThemesButton = By.xpath("//div[@id='YUIDDb']");
+    final By darkThemeElm = By.xpath("//*[name()='path' and contains(@d,'M12,3c-4.9')]");
+    final By feelingLuckyButton = By.xpath("(//input[@name='btnI'])[2]");
 
     public GoogleHomepage(WebDriver driver){
         super(driver);
         this.driver = driver;
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
-    }
-
-    public void clickOnAcceptTermsButton(){
-        driver.findElement(acceptTermsButton).click();
     }
 
     public void clickOnSearchButton(){
         driver.findElement(searchButton).click();
-//        searchButtonElement.click();
     }
 
-    public void typeSearchTerm(String term){
-        driver.findElement(searchInput).sendKeys(term);
+    public void clickOnFeelingLuckyButton(){
+        driver.findElement(feelingLuckyButton).click();
+    }
+
+    public void clickOnSettingsButton(){
+        driver.findElement(settingsButton).click();
+    }
+
+    public void clickOnChangeThemeButton(){
+        driver.findElement(switchThemesButton).click();
+    }
+
+    public By getDarkThemeElm(){
+        return darkThemeElm;
+    }
+
+    public By getSwitchThemesButton(){
+        return switchThemesButton;
     }
 }

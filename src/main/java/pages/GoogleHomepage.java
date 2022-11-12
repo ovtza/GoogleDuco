@@ -1,8 +1,9 @@
 package pages;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
 
 import java.time.Duration;
 
@@ -16,26 +17,31 @@ public class GoogleHomepage extends AbstractPage {
     final By darkThemeElm = By.xpath("//*[name()='path' and contains(@d,'M12,3c-4.9')]");
     final By feelingLuckyButton = By.xpath("(//input[@name='btnI'])[2]");
 
+    private final Logger log = LogManager.getLogger(getClass());
+
     public GoogleHomepage(WebDriver driver){
         super(driver);
         this.driver = driver;
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        PageFactory.initElements(driver, this);
     }
 
     public void clickOnSearchButton(){
+        log.info("Clicking the search button");
         driver.findElement(searchButton).click();
     }
 
     public void clickOnFeelingLuckyButton(){
+        log.info("Clicking the feeling lucky button");
         driver.findElement(feelingLuckyButton).click();
     }
 
     public void clickOnSettingsButton(){
+        log.info("Clicking the setting button");
         driver.findElement(settingsButton).click();
     }
 
     public void clickOnChangeThemeButton(){
+        log.info("Clicking switch theme button");
         driver.findElement(switchThemesButton).click();
     }
 

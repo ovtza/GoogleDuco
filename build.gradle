@@ -4,6 +4,7 @@ plugins {
 
 group 'com.gmail.owczarzakszymon'
 version '1.0-SNAPSHOT'
+sourceCompatibility = 11
 
 repositories {
     mavenCentral()
